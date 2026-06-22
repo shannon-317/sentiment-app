@@ -22,7 +22,7 @@
   <script>
     async function analyze() {
       const text = document.getElementById("input").value;
-      const res = await fetch("https://YOUR_RENDER_URL/predict", {
+      const res = await fetch("https://sentiment-app-16ij.onrender.com/predict", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ text })

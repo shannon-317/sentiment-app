@@ -1,16 +1,22 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import pickle
 
 app = FastAPI()
 
-# モデル読み込み
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 with open("model/vectorizer.pkl", "rb") as f:
     vectorizer = pickle.load(f)
 with open("model/model.pkl", "rb") as f:
     model = pickle.load(f)
 
-# リクエストの型定義
 class TextInput(BaseModel):
     text: str
 
